@@ -1,0 +1,41 @@
+$(document).ready (function()
+{
+	var defualtFontSize=parseFloat($('div.speech').css('fontSize'));
+	var speech = $('div.speech');
+	$('#switcher button').click(function()
+			{
+				var currfontSize=parseFloat($('div.speech').css('fontSize'));
+				switch (this.id.split('-')[1])
+					{
+						case 'large':
+							currfontSize*=1.4;
+							break;
+						case 'small':
+							currfontSize/=1.4;
+							break;
+						default:
+							currfontSize=defualtFontSize;
+
+
+					}
+					speech.animate({fontSize: currfontSize+'px'},'slow');
+
+			}
+			)
+
+	var firstPara = $('p').eq(1);
+	firstPara.hide();
+	$('a.more').click(function()
+			{
+				firstPara.animate({opacity:'toggle',height:'toggle'},'slow');
+				var link=$(this);
+				console.log(link.text());
+				if(link.text()=='read more')			
+					link.text('read less');
+				else
+					link.text('read more')
+				return false;
+			}
+			)
+}
+)
